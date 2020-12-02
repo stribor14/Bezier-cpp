@@ -31,7 +31,7 @@ if(NOT LEGENDRE_GAUSS_PRECISION)
   set(LEGENDRE_GAUSS_PRECISION  10)
 endif()
 
-option(BUILD_SHARED_LIBS "Build shared library (.so) instead of static one (/.a)" OFF)
+option(BUILD_SHARED_LIBS "Build shared library (.so) instead of static one (.a)" OFF)
 
 # build rules
 

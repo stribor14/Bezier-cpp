@@ -1,11 +1,12 @@
+
 # Bezier
 [![Build Status](https://api.travis-ci.com/romb-technologies/Bezier.svg?branch=master)](https://api.travis-ci.com/romb-technologies/Bezier)
-![v0.2](https://img.shields.io/badge/version-0.2-blue.svg)
+![v0.3](https://img.shields.io/badge/version-0.3-blue.svg)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/aceb46ce7de1407abd56cfc127dba5f1)](https://www.codacy.com/manual/stribor14/Bezier?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=stribor14/Bezier-cpp&amp;utm_campaign=Badge_Grade)
 
 Fast and lightweight class for using the Bezier curves of any order in C++
 
-*Algorithm implementations are based on [A Primer on Bezier Curves](https://pomax.github.io/bezierinfo/) by Pomax*
+*Some algorithm implementations are based on [A Primer on Bezier Curves](https://pomax.github.io/bezierinfo/) by Pomax*
 
 ## Key Features
   - Any number of control points
@@ -20,13 +21,13 @@ target_link_libraries(target bezier)
 ```
 
 ## Implemented methods
-  - Get value, derivative, curvature, tangent and normal for parameter *t*
-  - Get t from projection any point onto a curve
-  - Get precise length for any part of curve
+  - Get value, derivative, curvature, tangent and normal for a parameter *t*
+  - Point projection onto curve
+  - Get curve length, parameter iteration by length
   - Get a derivative curve (hodograph)
-  - Split into two subcurves
-  - Find curve roots and bounding box
-  - Find points of intersection with another curve
+  - Split into subcurves
+  - Find curve roots, extrema and bounding box
+  - Find points of intersection
   - Elevate/lower order
   - Apply parametric and geometric continuities
   - etc.
@@ -54,9 +55,10 @@ make install
 ### ROS
 - for use within a ROS workspace without the system-wide installation, clone the repo to src folder in you catkin workspace 
 
-## Example program __[OUTDATED]__ 
+## Example program
 A small Qt5 based program written as a playground for manipulating Bezier curves.
 - press *__H__* for a list of possible actions
+- *outdated* - newer features are not used in the example application
 
 ### Additional dependencies
  - qt5-default 

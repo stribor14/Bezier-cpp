@@ -67,35 +67,35 @@ public:
   void insertAt(uint idx, std::shared_ptr<Curve>& curve);
 
   /*!
-   * \brief Insert new curve at the beginning of polycurve
+   * \brief Insert new curve at the beginning of the polycurve
    * \param curve A curve to insert
    */
   void insertFront(std::shared_ptr<Curve>& curve);
 
   /*!
-   * \brief Insert new curve at the end of polycurve
+   * \brief Insert new curve at the end of the polycurve
    * \param curve A curve to insert
    */
   void insertBack(std::shared_ptr<Curve>& curve);
 
   /*!
-   * \brief Remove a subcurve from polycurve
+   * \brief Remove a subcurve from the polycurve
    * \param idx Index of subcurve to remove
    */
   void removeAt(uint idx);
 
   /*!
-   * \brief Remove a subcurve from the beginning of polycurve
+   * \brief Remove a subcurve from the beginning of the polycurve
    */
   void removeFirst();
 
   /*!
-   * \brief Remove a subcurve from the end of polycurve
+   * \brief Remove a subcurve from the end of the polycurve
    */
   void removeBack();
 
   /*!
-   * \brief Get sub-polycurve
+   * \brief Get the sub-polycurve
    * \param idx_l Index of first subcurve (start)
    * \param idx_r Index of last subcurve (end)
    */
@@ -112,7 +112,7 @@ public:
    * \param t A polycurve parameter
    * \return An index of of subcurve where parameter t is
    */
-  uint curveIdx(double t) const;
+  uint curveIdx(Parameter t) const;
 
   /*!
    * \brief Get pointer of a subcurve
@@ -128,7 +128,7 @@ public:
   std::vector<std::shared_ptr<Curve>> curveList() const;
 
   /*!
-   * \brief Get a polyline representation of polycurve as a vector of points on curve
+   * \brief Get a polyline representation of the polycurve as a vector of points on curve
    * \param smoothness Smoothness factor > 1 (more resulting points when closer to 1)
    * \param precision Minimal distance between two subsequent points
    * \return A vector of polyline vertices
@@ -148,7 +148,7 @@ public:
    * \return Arc length from start to parameter t
    * \warning Precision depends on value of LEGENDRE_GAUSS_N at compile time
    */
-  double length(double t) const;
+  double length(Parameter t) const;
 
   /*!
    * \brief Compute exact arc length with Legendre-Gauss quadrature
@@ -157,17 +157,16 @@ public:
    * \return Arc length between paramaters t1 and t2
    * \warning Precision depends on value of LEGENDRE_GAUSS_N at compile time
    */
-  double length(double t1, double t2) const;
+  double length(Parameter t1, Parameter t2) const;
 
   /*!
    * \brief Compute parameter t which is S distance from given t
    * \param t Curve parameter
    * \param s Distance to iterate
    * \param epsilon Precision of resulting t
-   * \param max_iter Maximum number of iterations for Newton-Rhapson
    * \return New parameter t
    */
-  double iterateByLength(double t, double s, double epsilon = 0.001, std::size_t max_iter = 15) const;
+  Parameter iterateByLength(Parameter t, double s, double epsilon = 0.001) const;
 
   /*!
    * \brief Get first and last control points
@@ -193,59 +192,65 @@ public:
    * \param t Curve parameter
    * \return Point on a polycurve for a given t
    */
-  Point valueAt(double t) const;
+  Point valueAt(Parameter t) const;
 
   /*!
-   * \brief Get curvature of polycurve for a given t
+   * \brief Get the point vector on polycurve for given parameters
+   * \param t_vector Curve parameters
+   * \return Vector of points on a polycurve for given parameters
+   */
+  PointVector valueAt(ParameterVector t_vector) const;
+
+  /*!
+   * \brief Get curvature of the polycurve for a given t
    * \param t A Polyurve parameter
    * \return Curvature of a polycurve for a given t
    */
-  double curvatureAt(double t) const;
+  double curvatureAt(Parameter t) const;
 
   /*!
    * \brief Get curvature derivative of curve for a given t
    * \param t Curve parameter
    * \return Curvature derivative of a curve for a given t
    */
-  double curvatureDerivativeAt(double t) const;
+  double curvatureDerivativeAt(Parameter t) const;
 
   /*!
-   * \brief Get the tangent of polycurve for a given t
+   * \brief Get the tangent of the polycurve for a given t
    * \param t A Polyurve parameter
    * \param normalize If the resulting tangent should be normalized
    * \return Tangent of a polycurve for a given t
    */
-  Vector tangentAt(double t, bool normalize = true) const;
+  Vector tangentAt(Parameter t, bool normalize = true) const;
 
   /*!
-   * \brief Get the normal of polycurve for a given t
+   * \brief Get the normal of the polycurve for a given t
    * \param t A Polyurve parameter
    * \param normalize If the resulting normal should be normalized
    * \return Normal of a polycurve for given t
    */
-  Vector normalAt(double t, bool normalize = true) const;
+  Vector normalAt(Parameter t, bool normalize = true) const;
 
   /*!
    * \brief Get value of a derivative for a given t
    * \param t Curve parameter
-   * \return Derivative curve
+   * \return Curve derivative at t
    */
-  Point derivativeAt(double t) const;
+  Vector derivativeAt(Parameter t) const;
 
   /*!
    * \brief Get value of an nth derivative for a given t
    * \param n Desired number of derivative
    * \param t Curve parameter
-   * \return Derivative curve
+   * \return nth curve derivative at t
    */
-  Point derivativeAt(uint n, double t) const;
+  Vector derivativeAt(uint n, Parameter t) const;
 
   /*!
-   * \brief Get the bounding box of polycurve
-   * \param use_roots If algorithm should use roots
-   * \return Bounding box (if use_roots is false, returns the bounding box of control points)
+   * \brief Get the bounding box of the polycurve
+   * \return Bounding box
    */
-  BoundingBox boundingBox(bool use_roots = true) const;
+  BoundingBox boundingBox() const;
 
   /*!
    * \brief Get the points of intersection with another curve or polycurve
@@ -255,17 +260,21 @@ public:
    * \return A vector af points of intersection between curves
    */
   template <typename Curve_PolyCurve>
-  std::vector<Point> pointsOfIntersection(const Curve_PolyCurve& curve, bool stop_at_first = false,
-                                             double epsilon = 0.001) const;
+  PointVector intersection(const Curve_PolyCurve& curve, bool stop_at_first = false, double epsilon = 0.001) const;
 
   /*!
    * \brief Get the parameter t where polycurve is closest to given point
    * \param point Point to project on polycurve
-   * \param step Size of step in coarse search
-   * \param epsilon Precision of resulting projection
    * \return Parameter t
    */
-  double projectPoint(const Point& point, double step = 0.01, double epsilon = 0.001) const;
+  Parameter projectPoint(const Point& point) const;
+
+  /*!
+   * \brief Get the parameter t vector where polycurve is closest to given points
+   * \param point_vector Points to project on polycurve
+   * \return Vector of parameters t
+   */
+  ParameterVector projectPoint(PointVector point_vector) const;
 
 private:
   /// Structure for holding underlying Bezier curves
@@ -275,7 +284,7 @@ private:
    * \brief Constructor for easier creation of sub-polycurve
    * \param curve_list A list of continuus sub-curves
    */
-  PolyCurve(std::deque<std::shared_ptr<Curve>>  curve_list);
+  PolyCurve(std::deque<std::shared_ptr<Curve>> curve_list);
 };
 
 } // namespace Bezier

@@ -18,8 +18,8 @@
 #define DECLARATIONS_H
 
 #include <Eigen/Dense>
-#include <vector>
 #include <memory>
+#include <vector>
 
 /*!
  * Nominal namespace containing class pre-definitions and typedefs
@@ -55,20 +55,33 @@ class PolyLine;
 class PolyCurve;
 
 /*!
+ * \brief Parameter of the curve function
+ */
+using Parameter = double;
+
+/*!
+ * \brief A vector of Parameters
+ */
+using ParameterVector = std::vector<Parameter>;
+
+/*!
  * \brief Point in xy plane
  */
 using Point = Eigen::Vector2d;
-/*!
- * \brief A Vector in xy plane
- */
-using Vector = Eigen::Vector2d;
+
 /*!
  * \brief A vector of Points
  */
 using PointVector = std::vector<Point>;
+
+/*!
+ * \brief A Vector in xy plane
+ */
+using Vector = Eigen::Vector2d;
+
 /*!
  * \brief Bounding box class
  */
 using BoundingBox = Eigen::AlignedBox2d;
-}
+} // namespace Bezier
 #endif // DECLARATIONS_H
