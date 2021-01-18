@@ -31,7 +31,7 @@ private:
   bool update_curvature = false;
   std::pair<qCurve*, double> t_to_update;
   bool update_cp = false;
-  std::pair<QGraphicsItem*, uint> cp_to_update;
+  std::pair<QGraphicsItem*, unsigned> cp_to_update;
 
 protected:
   void drawForeground(QPainter* painter, const QRectF& rect) Q_DECL_OVERRIDE;

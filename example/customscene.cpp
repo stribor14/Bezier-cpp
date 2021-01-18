@@ -126,7 +126,7 @@ void CustomScene::mousePressEvent(QGraphicsSceneMouseEvent* mouseEvent)
         if (is_curve)
         {
           auto pv = c_curve->controlPoints();
-          for (uint k = 0; k < pv.size(); k++)
+          for (unsigned k = 0; k < pv.size(); k++)
             if ((pv[k] - p).norm() < sensitivity && c_curve->getDraw_control_points())
             {
               update_cp = true;
@@ -136,7 +136,7 @@ void CustomScene::mousePressEvent(QGraphicsSceneMouseEvent* mouseEvent)
         if (is_poly)
         {
           auto pv = c_poly->controlPoints();
-          for (uint k = 0; k < pv.size(); k++)
+          for (unsigned k = 0; k < pv.size(); k++)
             if ((pv[k] - p).norm() < sensitivity && c_poly->getDraw_control_points())
             {
               update_cp = true;
@@ -425,7 +425,7 @@ Delete - delete curve/polycurve");
   //    for (auto&& curve : selectedItems())
   //    {
   //      if(is_poly)
-  //        for(uint k = 0; k < c_poly->getSize() - 1; k++)
+  //        for(unsigned k = 0; k < c_poly->getSize() - 1; k++)
   //          c_poly->setContinuity(k, c);
   //    }
   //    update();

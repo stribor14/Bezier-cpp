@@ -64,7 +64,7 @@ public:
    * \param idx Index where to insert new curve
    * \param curve A curve to insert
    */
-  void insertAt(uint idx, std::shared_ptr<Curve>& curve);
+  void insertAt(unsigned idx, std::shared_ptr<Curve>& curve);
 
   /*!
    * \brief Insert new curve at the beginning of polycurve
@@ -82,7 +82,7 @@ public:
    * \brief Remove a subcurve from polycurve
    * \param idx Index of subcurve to remove
    */
-  void removeAt(uint idx);
+  void removeAt(unsigned idx);
 
   /*!
    * \brief Remove a subcurve from the beginning of polycurve
@@ -99,27 +99,27 @@ public:
    * \param idx_l Index of first subcurve (start)
    * \param idx_r Index of last subcurve (end)
    */
-  PolyCurve subPolyCurve(uint idx_l, uint idx_r) const;
+  PolyCurve subPolyCurve(unsigned idx_l, unsigned idx_r) const;
 
   /*!
    * \brief Get number of subcurves
    * \return Number of subcurves
    */
-  uint size() const;
+  unsigned size() const;
 
   /*!
    * \brief Resolve polycurve parameter to subcurve index
    * \param t A polycurve parameter
    * \return An index of of subcurve where parameter t is
    */
-  uint curveIdx(double t) const;
+  unsigned curveIdx(double t) const;
 
   /*!
    * \brief Get pointer of a subcurve
    * \param idx Subcurve index
    * \return A shared pointer
    */
-  std::shared_ptr<Curve> curvePtr(uint idx) const;
+  std::shared_ptr<Curve> curvePtr(unsigned idx) const;
 
   /*!
    * \brief Get list of all subcurves
@@ -186,7 +186,7 @@ public:
    * \param index Index of chosen control point
    * \param point New control point
    */
-  void manipulateControlPoint(uint idx, const Point& point);
+  void manipulateControlPoint(unsigned idx, const Point& point);
 
   /*!
    * \brief Get the point on polycurve for a given t
@@ -238,7 +238,7 @@ public:
    * \param t Curve parameter
    * \return Derivative curve
    */
-  Point derivativeAt(uint n, double t) const;
+  Point derivativeAt(unsigned n, double t) const;
 
   /*!
    * \brief Get the bounding box of polycurve

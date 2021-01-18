@@ -39,7 +39,7 @@ void qCurve::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QW
   QPainterPath curve;
   auto poly = polyline();
   curve.moveTo(poly[0].x(), poly[0].y());
-  for (uint k = 1; k < poly.size(); k++)
+  for (unsigned k = 1; k < poly.size(); k++)
     curve.lineTo(poly[k].x(), poly[k].y());
   painter->drawPath(curve);
 
@@ -48,7 +48,7 @@ void qCurve::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QW
     const int d = 6;
     painter->setBrush(QBrush(Qt::blue, Qt::SolidPattern));
     Bezier::PointVector points = controlPoints();
-    for (uint k = 1; k < points.size(); k++)
+    for (unsigned k = 1; k < points.size(); k++)
     {
       painter->setPen(Qt::blue);
       painter->drawEllipse(QRectF(points[k - 1].x() - d / 2, points[k - 1].y() - d / 2, d, d));

@@ -56,7 +56,7 @@ public:
    * \brief Get order of curve (Nth order curve is described with N+1 points);
    * \return Order of curve
    */
-  uint order();
+  unsigned order();
 
   /*!
    * \brief Get the control points
@@ -122,7 +122,7 @@ public:
    * \param index Index of chosen control point
    * \param point New control point
    */
-  void manipulateControlPoint(uint idx, const Point& point);
+  void manipulateControlPoint(unsigned idx, const Point& point);
 
   /*!
    * \brief Manipulate the curve so that it passes through wanted point for given 't'
@@ -199,7 +199,7 @@ public:
    * \return Derivative curve
    * \warning Parameter n cannot be zero
    */
-  std::shared_ptr<const Curve> derivative(uint n) const;
+  std::shared_ptr<const Curve> derivative(unsigned n) const;
 
   /*!
    * \brief Get value of a derivative for a given t
@@ -214,7 +214,7 @@ public:
    * \param t Curve parameter
    * \return Derivative curve
    */
-  Point derivativeAt(uint n, double t) const;
+  Point derivativeAt(unsigned n, double t) const;
 
   /*!
    * \brief Get the roots of curve on both axis
@@ -272,10 +272,10 @@ private:
   /*!
    * \brief Map of different coefficient matrices, depending on the order of the curve
    */
-  using CoeffsMap = std::map<uint, Coeffs>;
+  using CoeffsMap = std::map<unsigned, Coeffs>;
 
   /// Number of control points (order + 1)
-  uint N_;
+  unsigned N_;
   /// N x 2 matrix where each row corresponds to control Point
   Eigen::MatrixX2d control_points_;
 
@@ -307,9 +307,9 @@ private:
   /// Private getter function for coefficients to get a subcurve t = [z, 1];
   Coeffs splittingCoeffsRight(double z = 0.5) const;
   /// Private getter function for coefficients to elevate order of curve
-  Coeffs elevateOrderCoeffs(uint n) const;
+  Coeffs elevateOrderCoeffs(unsigned n) const;
   /// Private getter function for coefficients to lower order of curve
-  Coeffs lowerOrderCoeffs(uint n) const;
+  Coeffs lowerOrderCoeffs(unsigned n) const;
 };
 
 } // namespace Bezier
