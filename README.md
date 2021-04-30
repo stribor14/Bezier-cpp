@@ -63,3 +63,7 @@ A small Qt5 based program written as a playground for manipulating Bezier curves
 
 ## Licence
 Apache License Version 2.0
+
+## Credit
+
+The development of this software was in part supported by the European Cohesion Fund, through grant number KK.03.2.2.04.314 "Software modules for advanced autonomous motion of load-transportation vehicles (Soft4AGV)" of the "Innovations of newly established SMEs - phase 2" open call.
